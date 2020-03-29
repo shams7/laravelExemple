@@ -25,7 +25,7 @@
                                    {{$answer->answer}}
                                </div>
                                 @if($question->responses->count())
-                                <div>{{ interval (($answer->responses->count() * 100) / $question->responses->count())}} %</div>
+                                <div>{{ intval(($answer->responses->count() * 100) / $question->responses->count())}} %</div>
                                @endif
                             </li>
                      @endforeach
