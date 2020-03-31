@@ -30,6 +30,20 @@ class QuestionController extends Controller
     {
      $question->answers()->delete();
      $question->delete();
-     return redirect($questionnaire->path());
+     return redirect($questionnaire->path())
+         ->with('success','Question deleted successfully');
+    }
+
+    public function update(Questionnaire $questionnaire, Question $question)
+    {
+        $data = request()->validate([
+            'name' => 'required',
+            'detail' => 'required',
+        ]);
+
+        $question = $questionnaire->questions()->update($data['question']);
+        $question->answers()->update($data['answers']);
+
+        return redirect($questionnaire->path());
     }
 }
